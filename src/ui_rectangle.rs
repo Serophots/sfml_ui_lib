@@ -1,5 +1,5 @@
 use sfml::graphics::{Color, Drawable, RectangleShape, RenderStates, RenderTarget, Shape, Transformable};
-use crate::ui_lib::udim::{UDim2, UIPositionable, UISizeable};
+use crate::udim::{UDim2, UIPositionable, UISizeable};
 
 pub struct UIRectangle<'s> {
     rectangle: RectangleShape<'s>,
