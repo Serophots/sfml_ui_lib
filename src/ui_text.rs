@@ -5,7 +5,7 @@ pub struct UIText<'s> {
     text: Text<'s>,
     position: UDim2,
 }
-impl<'s> UIText {
+impl<'s> UIText<'s> {
     pub fn new(text: String, font: &Font, char_size: u32, position: UDim2, color: Color, position_centrally: bool) -> Self {
         let mut text = Text::new(text, font, char_size);
 
