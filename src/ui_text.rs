@@ -27,13 +27,13 @@ impl<'s> UIText<'s> {
     }
 }
 
-impl Drawable for UIText {
+impl<'s> Drawable for UIText<'s> {
     fn draw<'a: 'shader, 'texture, 'shader, 'shader_texture>(&'a self, target: &mut dyn RenderTarget, states: &RenderStates<'texture, 'shader, 'shader_texture>) {
         target.draw_with_renderstates(&self.text, states);
     }
 }
 
-impl UIPositionable for UIText {
+impl<'s> UIPositionable for UIText<'s> {
     fn get_position(&self) -> UDim2 {
         self.position
     }
@@ -43,7 +43,7 @@ impl UIPositionable for UIText {
     }
 }
 
-impl UISizeable for UIText {
+impl<'s> UISizeable for UIText<'s> {
     fn get_size(&self) -> UDim2 {
         self.size
     }
