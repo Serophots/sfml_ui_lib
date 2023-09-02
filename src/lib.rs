@@ -1,5 +1,6 @@
 pub mod udim;
 pub mod ui_rectangle;
+mod ui_text;
 
 use sfml::graphics::{Drawable};
 use crate::udim::{UDim2, UIPositionable, UISizeable};
