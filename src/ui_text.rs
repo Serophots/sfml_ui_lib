@@ -4,10 +4,9 @@ use crate::udim::{UDim2, UIPositionable, UISizeable};
 pub struct UIText<'s> {
     text: Text<'s>,
     position: UDim2,
-    size: UDim2,
 }
 impl<'s> UIText {
-    pub fn new(text: String, font: &Font, char_size: u32, position: UDim2, size: UDim2, color: Color, position_centrally: bool) -> Self {
+    pub fn new(text: String, font: &Font, char_size: u32, position: UDim2, color: Color, position_centrally: bool) -> Self {
         let mut text = Text::new(text, font, char_size);
 
         text.set_fill_color(color);
@@ -23,8 +22,7 @@ impl<'s> UIText {
 
         Self {
             text,
-            position,
-            size
+            position
         }
     }
 }
