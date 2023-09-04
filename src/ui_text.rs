@@ -6,19 +6,23 @@ pub struct UIText<'s> {
     position: UDim2,
 }
 impl<'s> UIText<'s> {
-    pub fn new(text: String, font: &Font, char_size: u32, position: UDim2, color: Color, position_centrally: bool) -> Self {
+    pub fn new(text: &str, font: &'s Font, char_size: u32, position: UDim2, color: Color, position_centered_x: bool, position_centered_y: bool) -> Self {
         let mut text = Text::new(text, font, char_size);
 
         text.set_fill_color(color);
         text.set_outline_color(Color::BLACK);
         text.set_outline_thickness(3.);
 
-        if position_centrally {
-            text.set_position(position.get_absolute());
-        } else {
-            text.set_position((position.get_absolute().x - (text.global_bounds().size().x / 2.), position.get_absolute().y));
+        let mut x = position.get_absolute().x;
+        let mut y = position.get_absolute().y;
 
+        if position_centered_x {
+            x = position.get_absolute().x - (text.global_bounds().size().x / 2.)
         }
+        if position_centered_y {
+            y = position.get_absolute().y - (char_size as f32 /2.)
+        }
+        text.set_position((x,y));
 
         Self {
             text,
@@ -45,10 +49,10 @@ impl<'s> UIPositionable for UIText<'s> {
 
 impl<'s> UISizeable for UIText<'s> {
     fn get_size(&self) -> UDim2 {
-        self.size
+        UDim2::from_absolute((self.text.global_bounds().size().x, self.text.global_bounds().size().y))
     }
 
     fn set_size(&mut self, size: UDim2) {
-        self.size = size;
+        unreachable!()
     }
 }
